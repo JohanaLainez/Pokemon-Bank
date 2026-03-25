@@ -1,0 +1,263 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    margin:0;
+}
+
+.login-page{
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
+        url("img/Pokemon1.avif");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+/* titulo principal */
+h2{
+    font-family: 'Press Start 2P', cursive;
+    color:#2A6DB5;
+    font-size:18px;
+}
+/* texto general */
+label{
+    color:#2A6DB5;
+    font-weight:bold;
+}
+
+.login-container{
+    background:white;
+    padding:35px;
+    width:380px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+}
+
+button{
+    font-family: 'Poppins', sans-serif;
+    font-weight:500;
+    margin-top:15px;
+    padding:8px 16px;
+}
+
+.menu-page{
+    background-image:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url("img/Pokemon2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 50px;
+}
+
+.titulo-menu{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 0px #2A6DB5;
+}
+
+.texto-game{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.btn-menu{
+    background-color: white;
+    color: #1B3A73;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.25);
+}
+
+.btn-menu:hover{
+    background-color: #f2f2f2;
+    color: #2A6DB5;
+}
+
+
+
+/* =========================================
+   ESTILOS PARA SISTEMA DE CAJAS (PAGOS)
+   ========================================= */
+
+.box-system-page {
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+        url("img/Pokemon2.jpg"); /* Puedes cambiarla por otra si gustas */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Botones superiores */
+.btn-top-action {
+    background-color: #8fb8e5;
+    border: 3px solid #f0f8ff;
+    color: #1a3c63;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    box-shadow: 2px 2px 0px #1a3c63;
+}
+.btn-top-action:hover {
+    background-color: #a2c8f2;
+    color: #1a3c63;
+}
+
+/* Panel Izquierdo (PKMN DATA) */
+.left-data-panel {
+    background-color: #8fa0b5;
+    border: 6px solid #4a5c78;
+    border-radius: 15px;
+    height: 100%;
+    min-height: 450px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.panel-header {
+    background-color: #f8e850;
+    color: #4a5c78;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 4px solid #4a5c78;
+}
+
+.panel-content {
+    padding: 20px;
+}
+
+.empty-msg {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    text-align: center;
+    margin-top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+}
+
+/* Navegación de Cajas (Top Header) */
+.box-nav {
+    background-color: #90d0a0;
+    border: 6px solid #4a785c;
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.box-nav h3 {
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    font-size: 16px;
+    text-shadow: 2px 2px 0px #4a785c;
+}
+
+.arrow-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    text-shadow: 2px 2px 0px #4a785c;
+}
+.arrow-btn:hover {
+    color: #f8e850;
+}
+
+/* Contenedor Principal de la Caja */
+.main-box-container {
+    background-color: #e8d0d8;
+    border: 6px solid #b898a8;
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 380px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+    background-image: radial-gradient(#d8b8c8 20%, transparent 20%);
+    background-size: 20px 20px; /* Textura de cuadrícula suave */
+}
+
+/* Tiles de las empresas */
+.pokemon-tile {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 2px dashed #b898a8;
+    border-radius: 10px;
+    padding: 15px 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pokemon-tile:hover {
+    background-color: white;
+    border: 2px solid #4a5c78;
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+.tile-icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.tile-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: #4a5c78;
+}
+
+/* Formularios del Panel Izquierdo */
+.payment-form label {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.pkmn-input {
+    border: 3px solid #4a5c78;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.btn-pkmn-cancel {
+    background-color: #d86060;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    border: 3px solid #803030;
+}
+.btn-pkmn-cancel:hover {
+    background-color: #f07070;
+    color: white;
+}
+
+.btn-pkmn-pay {
+    background-color: #60c060;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    border: 3px solid #307030;
+}
+.btn-pkmn-pay:hover {
+    background-color: #70d070;
+    color: white;
+}
