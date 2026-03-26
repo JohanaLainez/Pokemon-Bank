@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfica de movimientos</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="menu-page">
+
+    <div class="container py-5">
+        <h2 class="titulo-game text-center">Gráfica de movimientos</h2>
+
+        <div class="grafica-box">
+            <canvas id="graficaMovimientos"></canvas>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="MenuPrincipal.html" class="btn btn-menu">Volver al menú</a>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('graficaMovimientos');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Depósitos', 'Retiros', 'Servicios'],
+                datasets: [{
+                    label: 'Monto en dólares',
+                    data: [250, 100, 75],
+                    backgroundColor: [
+                        '#ffffff',
+                        '#dfe8ff',
+                        '#bcd4ff'
+                    ],
+                    borderColor: [
+                        '#2A6DB5',
+                        '#2A6DB5',
+                        '#2A6DB5'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white',
+                            font: {
+                                family: 'Poppins',
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                family: 'Poppins',
+                                size: 12
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                family: 'Poppins',
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
