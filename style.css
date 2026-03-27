@@ -364,3 +364,15 @@ canvas{
         font-size: 18px;
     }
 }
+.saldo-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.saldo-box h1 {
+    color: green;
+    font-size: 40px;
+}
