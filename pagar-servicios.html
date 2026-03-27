@@ -6,6 +6,8 @@
     <title>Pokemon Bank - Pagar Servicios</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,7 +19,7 @@
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-end gap-2">
             <a href="MenuPrincipal.html" class="btn btn-top-action">MENÚ PRINCIPAL</a>
-            <a href="Logout.html" class="btn btn-top-action">CERRAR SESIÓN</a>
+            <a href="index.html" class="btn btn-top-action">CERRAR SESIÓN</a>
         </div>
     </div>
 
@@ -51,30 +53,17 @@
 </div>
 
 <script>
-    // Base de datos de categorías y empresas
     const data = [
-        {
-            category: "ENERGÍA ELÉCTRICA",
-            companies: ["AESS", "CLESA", "EEO", "DEUSEM", "DELSUR"]
-        },
-        {
-            category: "INTERNET/TELEFONÍA",
-            companies: ["CLARO", "MOVISTAR", "TIGO", "CableColor"]
-        },
-        {
-            category: "AGUA POTABLE",
-            companies: ["ANDA", "Aqua Services", "Transportes Callejas", "Ramaga"]
-        }
+        { category: "ENERGÍA ELÉCTRICA", companies: ["AESS", "CLESA", "EEO", "DEUSEM", "DELSUR"] },
+        { category: "INTERNET/TELEFONÍA", companies: ["CLARO", "MOVISTAR", "TIGO", "CableColor"] },
+        { category: "AGUA POTABLE", companies: ["ANDA", "Aqua Services", "Transportes Callejas", "Ramaga"] }
     ];
 
     let currentIndex = 0;
-
-    // Elementos del DOM
     const categoryTitle = document.getElementById("category-title");
     const tilesContainer = document.getElementById("tiles-container");
     const formContainer = document.getElementById("form-container");
 
-    // Función para renderizar la caja actual
     function renderBox(index) {
         categoryTitle.innerText = data[index].category;
         tilesContainer.innerHTML = "";
@@ -83,7 +72,6 @@
         data[index].companies.forEach(company => {
             const col = document.createElement("div");
             col.className = "col-6 col-sm-4 col-md-3";
-            
             col.innerHTML = `
                 <div class="pokemon-tile" onclick="showForm('${company}')">
                     <div class="tile-icon">🏢</div>
@@ -94,34 +82,91 @@
         });
     }
 
-// 
-function showForm(selectedCompany) {
-    
-    // 
-    let companyField = `
-        <label>Empresa seleccionada:</label>
-        <input type="text" class="form-control pkmn-input mb-3" value="${selectedCompany}" readonly>
-    `;
+    function showForm(selectedCompany) {
+        formContainer.innerHTML = `
+            <div class="payment-form" id="payment-form">
+                <label>Empresa seleccionada:</label>
+                <input type="text" class="form-control pkmn-input mb-3" value="${selectedCompany}" id="empresa" readonly>
 
-    formContainer.innerHTML = `
-        <div class="payment-form">
-            ${companyField}
+                <label>N° de Cuenta / Recibo:</label>
+                <input type="text" name="cuenta" id="cuenta" class="form-control pkmn-input mb-3" placeholder="Ej: 12345678">
 
-            <label>N° de Cuenta / Recibo:</label>
-            <input type="text" class="form-control pkmn-input mb-3" placeholder="Ej: 12345678">
+                <label>Total a depositar ($):</label>
+                <input type="number" name="monto" id="monto" class="form-control pkmn-input mb-4" placeholder="0.00" step="0.01">
 
-            <label>Total a depositar ($):</label>
-            <input type="number" class="form-control pkmn-input mb-4" placeholder="0.00" step="0.01">
-
-            <div class="d-flex gap-2">
-                <button class="btn btn-pkmn-cancel w-50" onclick="renderBox(currentIndex)">Cancelar</button>
-                <button class="btn btn-pkmn-pay w-50" onclick="alert('Transacción exitosa para: ${selectedCompany}')">Pagar</button>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-pkmn-cancel w-50" onclick="renderBox(currentIndex)">Cancelar</button>
+                    <button class="btn btn-pkmn-pay w-50" onclick="procesarPago()">Pagar</button>
+                </div>
             </div>
-        </div>
-    `;
-}
+        `;
+    }
 
-    // Eventos de las flechas
+    // aqui se hace Validación y usamos SweetAlert
+    function procesarPago() {
+        // 1. Definir restricciones para Validate.js
+        const constraints = {
+            cuenta: {
+                presence: { allowEmpty: false, message: "es obligatoria" },
+                format: {
+                    pattern: "[0-9]+",
+                    message: "solo debe contener números"
+                }
+            },
+            monto: {
+                presence: { allowEmpty: false, message: "es obligatorio" },
+                numericality: {
+                    greaterThan: 0,
+                    message: "debe ser mayor a 0"
+                }
+            }
+        };
+
+        // 2. Capturar valores
+        const values = {
+            cuenta: document.getElementById("cuenta").value,
+            monto: document.getElementById("monto").value
+        };
+
+        // 3. Validar
+        const errors = validate(values, constraints);
+
+        if (errors) {
+            // error que se muestra con SweetAlert por si la validación falla
+            let errorMsg = Object.values(errors).join("<br>");
+            Swal.fire({
+                icon: 'error',
+                title: '¡Oops!',
+                html: errorMsg,
+                confirmButtonColor: '#2A6DB5'
+            });
+        } else {
+            // Confirmación de éxito con SweetAlert
+            Swal.fire({
+                title: '¿Confirmar pago?',
+                text: `Vas a pagar $${values.monto} a ${document.getElementById("empresa").value}`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: '¡Sí, pagar!',
+                cancelButtonText: 'Revisar',
+                confirmButtonColor: '#60c060',
+                cancelButtonColor: '#d86060'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: '¡Pago Realizado!',
+                        text: 'Tu transacción se procesó con éxito.',
+                        icon: 'success',
+                        confirmButtonColor: '#2A6DB5'
+                    }).then(() => {
+                        renderBox(currentIndex); // Reiniciar vista
+                    });
+                }
+            });
+        }
+    }
+
+    // Eventos de flechas
     document.getElementById("prev-btn").addEventListener("click", () => {
         currentIndex = (currentIndex === 0) ? data.length - 1 : currentIndex - 1;
         renderBox(currentIndex);
@@ -132,7 +177,6 @@ function showForm(selectedCompany) {
         renderBox(currentIndex);
     });
 
-    // Cargar la primera caja al iniciar
     renderBox(currentIndex);
 </script>
 
