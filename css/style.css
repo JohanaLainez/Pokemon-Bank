@@ -6,7 +6,7 @@ body{
 .login-page{
     background-image:
         linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
-        url("img/Pokemon7.gif");
+        url("../img/Pokemon7.gif");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -68,7 +68,7 @@ button{
 .menu-page{
     background-image:
         linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-        url("img/Pokemon2.jpg");
+        url("../img/Pokemon2.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -173,7 +173,7 @@ button{
 .box-system-page {
     background-image: 
         linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
-        url("img/Pokemon2.jpg"); /* Puedes cambiarla por otra si gustas */
+        url("../img/Pokemon2.jpg"); /* Puedes cambiarla por otra si gustas */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -384,7 +384,7 @@ canvas{
 .retiro-page{
     background-image:
         linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.10)),
-        url("img/retiro-fondo.png");
+        url("../img/retiro-fondo.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
