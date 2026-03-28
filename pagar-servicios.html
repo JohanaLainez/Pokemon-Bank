@@ -152,14 +152,31 @@
                 confirmButtonColor: '#60c060',
                 cancelButtonColor: '#d86060'
             }).then((result) => {
+            // Capturar datos del formulario
                 if (result.isConfirmed) {
-                    Swal.fire({
+                    const empresa = document.getElementById("empresa").value;
+                    const cuenta = document.getElementById("cuenta").value;
+                    const monto = Number(document.getElementById("monto").value);
+            // Obtiene transacciones actuales, agrega la nueva y guarda en LocalStorage
+                    const transactions = getTransactions();
+                    transactions.push({
+                        tipo: "pago de servicios",
+                        empresa: empresa,
+                        cuenta: cuenta,
+                        monto: monto,
+                        fecha: new Date().toLocaleString()
+                    });
+                    saveTransactions(transactions);
+
+    
+            // confirmación de éxito con SweetAlert
+                     Swal.fire ({
                         title: '¡Pago Realizado!',
                         text: 'Tu transacción se procesó con éxito.',
                         icon: 'success',
                         confirmButtonColor: '#2A6DB5'
                     }).then(() => {
-                        renderBox(currentIndex); // Reiniciar vista
+                        renderBox(currentIndex); 
                     });
                 }
             });
@@ -178,6 +195,20 @@
     });
 
     renderBox(currentIndex);
+
+    // Claves para LocalStorage
+    const TRANS_KEY = "pokemonBankTransactions";
+const BALANCE_KEY = "pokemonBankBalance";
+
+    // LocalStorage 
+function getTransactions() {
+    return JSON.parse(localStorage.getItem(TRANS_KEY)) || [];
+}
+
+function saveTransactions(transactions) {
+    localStorage.setItem(TRANS_KEY, JSON.stringify(transactions));
+}
+
 </script>
 
 </body>
