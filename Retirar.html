@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon Bank - Retiro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="retiro-page">
+
+    <div class="atm-wrapper">
+
+        <div class="side-buttons left-side">
+            <button class="btn-side" onclick="seleccionarMonto(5)">5</button>
+            <button class="btn-side" onclick="seleccionarMonto(10)">10</button>
+            <button class="btn-side" onclick="seleccionarMonto(20)">20</button>
+            <button class="btn-side" onclick="seleccionarMonto(40)">40</button>
+        </div>
+
+        <div class="retiro-panel">
+            <h1 class="retiro-title">Retirar dinero</h1>
+
+            <p class="retiro-subtitle">
+                Ingrese el monto a retirar
+            </p>
+
+            <input
+                type="number"
+                id="montoRetiro"
+                class="retiro-input"
+                placeholder="Ingrese cantidad requerida manualmente"
+                min="1"
+            >
+
+            <div class="center-actions">
+                <button class="btn-main" onclick="confirmarRetiro()">
+                    Confirmar retiro
+                </button>
+
+                <a href="MenuPrincipal.html" class="btn-main btn-cancel">
+                    Cancelar
+                </a>
+            </div>
+
+            <p id="mensajeRetiro" class="mensaje-retiro"></p>
+        </div>
+
+        <div class="side-buttons right-side">
+            <button class="btn-side" onclick="seleccionarMonto(60)">60</button>
+            <button class="btn-side" onclick="seleccionarMonto(80)">80</button>
+            <button class="btn-side" onclick="seleccionarMonto(100)">100</button>
+            <button class="btn-side" onclick="seleccionarMonto(120)">120</button>
+        </div>
+
+    </div>
+
+    <script>
+        function seleccionarMonto(monto) {
+            document.getElementById("montoRetiro").value = monto;
+        }
+
+        function confirmarRetiro() {
+            const input = document.getElementById("montoRetiro");
+            const mensaje = document.getElementById("mensajeRetiro");
+            const monto = parseFloat(input.value);
+
+            if (!monto || monto <= 0) {
+                mensaje.textContent = "Ingrese un monto válido.";
+                mensaje.className = "mensaje-retiro error";
+                return;
+            }
+
+            mensaje.textContent = "¡Retiro realizado con éxito! Puedes gastarlo en Poké Balls.";
+            mensaje.className = "mensaje-retiro success";
+
+            input.value = "";
+        }
+    </script>
+
+</body>
+</html>
