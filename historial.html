@@ -21,7 +21,7 @@
                 <thead>
                     <tr>
                         <th>Tipo</th>
-                        <th>Cuenta</th>
+                        <th>Detalle</th>
                         <th>Monto</th>
                         <th>Fecha</th>
                     </tr>
@@ -40,21 +40,13 @@
     </div>
 </div>
 
+<script src="js/app.js"></script>
+
 <script>
-    // Claves para localStorage
-    const TRANS_KEY = "pokemonBankTransactions";
-
-    // Obtiene todas las transacciones guardadas
-    function getTransactions() {
-        return JSON.parse(localStorage.getItem(TRANS_KEY)) || [];
-    }
-
-    // Muestra el historial en la tabla
     function renderHistory() {
         const tbody = document.getElementById("historialBody");
         const transacciones = getTransactions();
 
-     // Si no muestra transacciones, muestra un mensaje
         if (transacciones.length === 0) {
             tbody.innerHTML = `
                 <tr>
@@ -64,24 +56,30 @@
             return;
         }
 
-        // Limpia la tabla antes de insertar las transacciones
         tbody.innerHTML = "";
 
-        // Recorre las transacciones en orden inverso (más recientes primero)
-        // Se invierte el orden para mostrar las transacciones más recientes al principio
         transacciones.slice().reverse().forEach(t => {
             const fila = document.createElement("tr");
+
+            let detalle = "N/A";
+
+            if (t.cuenta) {
+                detalle = t.cuenta;
+            } else if (t.empresa) {
+                detalle = t.empresa;
+            }
+
             fila.innerHTML = `
                 <td>${t.tipo}</td>
-                <td>${t.cuenta}</td>
+                <td>${detalle}</td>
                 <td>$${Number(t.monto).toFixed(2)}</td>
                 <td>${t.fecha}</td>
             `;
+
             tbody.appendChild(fila);
         });
     }
 
-    // Carga el historial al cargar la página
     renderHistory();
 </script>
 

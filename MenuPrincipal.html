@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Pokemon Bank - Menú principal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="menu-page">
@@ -19,52 +22,62 @@
     <h2 class="titulo-menu">Pokemon Bank ATM</h2>
     <hr>
 
-    <h4 class="texto-game">Bienvenido Jose</h4>
-    <p class="texto-game"><strong>Número de cuenta:</strong> 000223</p>
+    <h4 class="texto-game" id="bienvenida">Bienvenido</h4>
+    <p class="texto-game">
+        <strong>Número de cuenta:</strong>
+        <span id="numeroCuenta">---</span>
+    </p>
 
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <a href="depositos.html" style="text-decoration: none;">
-                <button class="btn btn-menu w-100">Depositar</button>
-            </a>
+    <div class="row g-3 mt-4">
+        <div class="col-12 col-md-3">
+            <a href="depositos.html" class="btn btn-menu w-100">Depositar</a>
         </div>
 
-        <div class="col-md-3">
-             <a href="Retirar.html" style="text-decoration: none;">
-                <button class="btn btn-menu w-100"> Retirar dinero</button>
-            </a>
-</div>
-
-        <div class="col-md-3">
-            <a href="consultar-saldo.html" style="text-decoration: none;">
-                <button class="btn btn-menu w-100">Consultar saldo</button>
-            </a>
+        <div class="col-12 col-md-3">
+            <a href="Retirar.html" class="btn btn-menu w-100">Retirar dinero</a>
         </div>
 
-        <div class="col-md-3">
-            <a href="pagar-servicios.html" style="text-decoration: none;">
-                <button class="btn btn-menu w-100">Pagar servicios</button>
-        </a>
+        <div class="col-12 col-md-3">
+            <a href="consultar-saldo.html" class="btn btn-menu w-100">Consultar saldo</a>
+        </div>
+
+        <div class="col-12 col-md-3">
+            <a href="pagar-servicios.html" class="btn btn-menu w-100">Pagar servicios</a>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-3">
+        <div class="col-12 col-md-4">
+            <a href="historial.html" class="btn btn-menu w-100">Historial de transacciones</a>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <a href="grafica.html" class="btn btn-menu w-100">Gráfica de movimientos</a>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <a href="Logout.html" class="btn btn-menu w-100">Cerrar sesión</a>
+        </div>
+    </div>
+
 </div>
-    </div>
 
-    <div class="row mt-3">
 
-    <div class="col-md-4">
-        <a href="historial.html" class="btn btn-menu w-100">Historial de transacciones</a>
-    </div>
+<script src="js/app.js"></script>
 
-    <div class="col-md-4">
-        <a href="grafica.html" class="btn btn-menu w-100">Gráfica de movimientos</a>
-    </div>
+<script>
+    function cargarDatosUsuario() {
+        const user = getUser();
 
-    <div class="col-md-4">
-        <a href="Logout.html" class="btn btn-menu w-100">Cerrar sesión</a>
-    </div>
+        document.getElementById("bienvenida").innerText =
+            "Bienvenido " + user.nombre;
 
-</div>
+        document.getElementById("numeroCuenta").innerText =
+            user.cuenta;
+    }
 
-</div>
+    cargarDatosUsuario();
+</script>
 
 </body>
 </html>
