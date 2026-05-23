@@ -9,21 +9,16 @@
 </head>
 
 <body class="login-page">
-
 <div class="login-container">
-
     <h2>Pokemon Bank ATM</h2>
-
     <label>Ingresa tu PIN</label>
-    <input type="password" maxlength="4">
-
+    <input type="password" id="pinInput" maxlength="4" placeholder="****">
     <br>
-
-    <a href="MenuPrincipal.html">
-    <button>Ingresar</button>
-</a>
-
+    <p id="errorMsg" style="display:none; color:red;">PIN incorrecto. Intenta de nuevo.</p>
+    <button id="btnIngresar">Ingresar</button>
 </div>
 
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
