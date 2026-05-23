@@ -88,3 +88,25 @@ function generarComprobantePDF(tipo, monto, detalle) {
 }
 
 iniciarDatos();
+
+// validacion login
+const btnIngresar = document.getElementById("btnIngresar");
+const pinInput = document.getElementById("pinInput");
+const errorMsg = document.getElementById("errorMsg");
+
+if (btnIngresar) {
+    btnIngresar.addEventListener("click", function () {
+        const user = getUser();
+        if (pinInput.value === user.pin) {
+            window.location.href = "MenuPrincipal.html";
+        } else {
+            errorMsg.style.display = "block";
+            pinInput.value = "";
+            pinInput.focus();
+        }
+    });
+
+    pinInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") btnIngresar.click();
+    });
+}
