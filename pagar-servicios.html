@@ -14,6 +14,8 @@
     <!-- Validate.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -214,6 +216,7 @@
                     icon: 'success',
                     confirmButtonColor: '#2A6DB5'
                 }).then(() => {
+                    generarComprobantePDF("Pago de Servicios", monto, `Empresa: ${empresa} - Ref: ${cuenta}`);
                     renderBox(currentIndex); 
                 });
             }
